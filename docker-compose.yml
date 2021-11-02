@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  currencies-mysql:
+    container_name: "currencies_database"
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=currencies
+      - MYSQL_ROOT_PASSWORD=root
+    
+    ports:
+      - 35060:3306
+
+    networks:
+      - currencies-network
+
+
+networks:
+  currencies-network:
+    driver: bridge
