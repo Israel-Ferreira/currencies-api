@@ -11,6 +11,8 @@ COPY . .
 
 RUN go build -o /hurb-currency
 
+ENV PORT=8990
+
 EXPOSE 8990
 
 CMD [ "/hurb-currency" ]
