@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
 
 	"github.com/Israel-Ferreira/hurb-currency/config"
+	"github.com/Israel-Ferreira/hurb-currency/controllers"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -20,5 +20,15 @@ func main() {
 
 	defer config.DB.Close()
 
-	log.Fatal(http.ListenAndServe(":8990", nil))
+	r := gin.Default()
+
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"msg": "Hello World",
+		})
+	})
+
+	controllers.LoadCurrencyRoutes(r)
+
+	r.Run()
 }
